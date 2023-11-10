@@ -28,18 +28,16 @@ test('X plays first', () => {
 });
 
 test('O plays after X', () => {
-  act(() =>
-    playing([
-      { x: 'NORTH_WEST' }
-    ])
-  );
+  playing([
+    { x: 'NORTH_WEST' }
+  ]);
 
   expectStatus("O plays!");
 });
 
 function playing(moves) {
-  moves.forEach(e => {
-    userEvent.click(screen.getByTestId(e.x || e.o));
+  moves.forEach(m => {
+    act(() => userEvent.click(screen.getByTestId(m.x || m.o)));
   });
 }
 
