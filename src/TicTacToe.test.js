@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import TicTacToe from './TicTacToe';
@@ -17,19 +17,31 @@ xtest('X wins', () => {
     { x: 'NORTH'      }, { o: 'CENTER' },
     { x: 'NORTH_EAST' }
   ]);
-  
+
   expectStatus("X wins!");
 });
 
 test('X plays first', () => {
   render(<TicTacToe />);
- 
+
   expectStatus("X plays!");
+});
+
+test('O plays after X', () => {
+  render(<TicTacToe />);
+
+  act(() =>
+    playing([
+      { x: 'NORTH_WEST' }
+    ])
+  );
+
+  expectStatus("O plays!");
 });
 
 function playing(moves) {
   moves.forEach(e => {
-      userEvent.click(screen.getByTestId(e.x || e.o));
+    userEvent.click(screen.getByTestId(e.x || e.o));
   });
 }
 
