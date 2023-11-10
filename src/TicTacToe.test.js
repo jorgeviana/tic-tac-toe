@@ -21,6 +21,11 @@ xtest('X wins', () => {
   expectStatus("X wins!");
 });
 
+test('X plays first', () => {
+  render(<TicTacToe />);
+ 
+  expectStatus("X plays!");
+});
 
 function playing(moves) {
   moves.forEach(e => {

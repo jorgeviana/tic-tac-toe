@@ -15,7 +15,7 @@ function TicTacToe() {
         <div className="cell"></div>
         <div className="cell"></div>
       </div>
-      <h3 data-testid="game-status" className="centered"></h3>
+      <h3 data-testid="game-status" className="centered">X plays!</h3>
     </>
   );
 }
