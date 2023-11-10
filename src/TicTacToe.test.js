@@ -3,6 +3,10 @@ import userEvent from '@testing-library/user-event';
 
 import TicTacToe from './TicTacToe';
 
+beforeEach(() => {
+  render(<TicTacToe />);
+});
+
 /*
   This test will only pass when (hopefuly) all the game is implemented.
   That's why it is disabled.
@@ -10,8 +14,6 @@ import TicTacToe from './TicTacToe';
   What other tests can we write that will allow us to drive the solution?
 */
 xtest('X wins', () => {
-  render(<TicTacToe />);
-
   playing([
     { x: 'NORTH_WEST' }, { o: 'WEST'   },
     { x: 'NORTH'      }, { o: 'CENTER' },
@@ -22,14 +24,10 @@ xtest('X wins', () => {
 });
 
 test('X plays first', () => {
-  render(<TicTacToe />);
-
   expectStatus("X plays!");
 });
 
 test('O plays after X', () => {
-  render(<TicTacToe />);
-
   act(() =>
     playing([
       { x: 'NORTH_WEST' }
