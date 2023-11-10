@@ -6,7 +6,8 @@ function TicTacToe() {
   const [player, setPlayer] = useState('X')
 
   const handleClick = () => {
-    setPlayer('O')
+    if (player === 'X') setPlayer('O');
+    else setPlayer('X');
   }
 
   return (
@@ -16,7 +17,7 @@ function TicTacToe() {
         <div data-testid="NORTH_WEST" onClick={handleClick} className="cell"></div>
         <div className="cell"></div>
         <div className="cell"></div>
-        <div className="cell"></div>
+        <div data-testid="WEST" onClick={handleClick} className="cell"></div>
         <div className="cell"></div>
         <div className="cell"></div>
         <div className="cell"></div>
