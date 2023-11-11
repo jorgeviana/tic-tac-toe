@@ -2,12 +2,13 @@ import './TicTacToe.css'
 
 import { useState } from 'react'
 
+import { gameEngine } from './gameEngine'
+
 function TicTacToe() {
   const [player, setPlayer] = useState('X')
 
   const handleClick = () => {
-    if (player === 'X') setPlayer('O');
-    else setPlayer('X');
+    setPlayer(gameEngine.nextPlayer(player));
   }
 
   return (
