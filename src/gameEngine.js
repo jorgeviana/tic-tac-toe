@@ -1,7 +1,3 @@
-export {
-    gameEngine
-}
-
 const gameEngine = {
     nextPlayer: (player) => {
         if (player === 'X') return 'O';
@@ -12,4 +8,8 @@ const gameEngine = {
         { id: 'WEST'       }, { id: 'CENTER' }, { id: 'EAST'       },
         { id: 'SOUTH_WEST' }, { id: 'SOUTH'  }, { id: 'SOUTH_EAST' }
     ]
+}
+
+export {
+    gameEngine
 }
