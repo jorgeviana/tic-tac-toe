@@ -17,7 +17,7 @@ function TicTacToe() {
       <div id="tic-tac-toe-board">
         { 
           gameEngine.cells.map(
-            (cell) => <div data-testid={cell.id} onClick={handleClick} className="cell"></div>
+            (cell) => <div key={cell.id} data-testid={cell.id} onClick={handleClick} className="cell"></div>
           )
         }
       </div>
