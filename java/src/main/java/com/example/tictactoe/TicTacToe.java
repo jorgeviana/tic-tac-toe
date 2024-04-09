@@ -25,13 +25,22 @@ public class TicTacToe {
 
 
     public void play(Player player, Position position) {
-        if (isWinner(X) || isWinner(O)) return;
-        if (currentPlayer == player) return;
-        if (playedPositions.contains(position)) return;
+        if (isInvalidMove(player, position)) return;
 
+        applyMove(player, position);
+    }
+
+    private void applyMove(Player player, Position position) {
         currentPlayer = player;
         playedPositions.add(position);
         moves.add(new Move(player, position));
+    }
+
+    private boolean isInvalidMove(Player player, Position position) {
+        if (isWinner(X) || isWinner(O)) return true;
+        if (currentPlayer == player) return true;
+        if (playedPositions.contains(position)) return true;
+        return false;
     }
 
     public List<Move> moves() {
