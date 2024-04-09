@@ -1,5 +1,5 @@
 package com.example.tictactoe;
 
 public enum GameState {
-    X_PLAYS
+    O_PLAYS, X_PLAYS
 }

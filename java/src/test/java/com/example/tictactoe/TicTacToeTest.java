@@ -12,7 +12,14 @@ public class TicTacToeTest {
         assertEquals(GameState.X_PLAYS, game.state());
     }
 
-    // O_plays_after_X
+    @Test
+    void O_plays_after_X() {
+        var game = new TicTacToe();
+
+        game.play(Player.X, Position.UP_LEFT);
+
+        assertEquals(GameState.O_PLAYS, game.state());
+    }
     // players_alternate
     // cannot_play_occupied_position
     // cannot_play_twice
