@@ -31,7 +31,16 @@ public class TicTacToeTest {
 
         assertEquals(X_PLAYS, game.state());
     }
-    // cannot_play_occupied_position
+
+
+    @Test
+    void cannot_play_occupied_position() {
+        game.play(X, UP_LEFT);
+
+        game.play(O, UP_LEFT);
+
+        assertEquals(O_PLAYS, game.state());
+    }
     // cannot_play_twice
     // X_wins
     // O_wins
