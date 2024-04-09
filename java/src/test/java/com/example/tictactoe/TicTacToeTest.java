@@ -2,23 +2,25 @@ package com.example.tictactoe;
 
 import org.junit.jupiter.api.Test;
 
+import static com.example.tictactoe.GameState.*;
+import static com.example.tictactoe.Player.*;
+import static com.example.tictactoe.Position.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TicTacToeTest {
+
+    TicTacToe game = new TicTacToe();
+
     @Test
     void X_plays_first() {
-        var game = new TicTacToe();
-
-        assertEquals(GameState.X_PLAYS, game.state());
+        assertEquals(X_PLAYS, game.state());
     }
 
     @Test
     void O_plays_after_X() {
-        var game = new TicTacToe();
+        game.play(X, UP_LEFT);
 
-        game.play(Player.X, Position.UP_LEFT);
-
-        assertEquals(GameState.O_PLAYS, game.state());
+        assertEquals(O_PLAYS, game.state());
     }
     // players_alternate
     // cannot_play_occupied_position
