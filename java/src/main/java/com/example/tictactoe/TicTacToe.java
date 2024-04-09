@@ -13,7 +13,6 @@ import static com.example.tictactoe.Position.*;
 
 public class TicTacToe {
     private Player currentPlayer;
-    private Set<Position> playedPositions = new HashSet<>();
     private Set<Move> moves = new LinkedHashSet<>();
 
     public GameState state() {
@@ -21,8 +20,6 @@ public class TicTacToe {
         if (isWinner(O)) return O_WINS;
         return nextPlayerState();
     }
-
-
 
     public void play(Player player, Position position) {
         if (isInvalidMove(player, position)) return;
@@ -32,15 +29,20 @@ public class TicTacToe {
 
     private void applyMove(Player player, Position position) {
         currentPlayer = player;
-        playedPositions.add(position);
         moves.add(new Move(player, position));
     }
 
     private boolean isInvalidMove(Player player, Position position) {
         if (isWinner(X) || isWinner(O)) return true;
         if (currentPlayer == player) return true;
-        if (playedPositions.contains(position)) return true;
+        if (isOccupiedPosition(position)) return true;
         return false;
+    }
+
+    private boolean isOccupiedPosition(Position position) {
+        return moves.stream()
+            .map(Move::getPosition)
+            .anyMatch(m -> m.equals(position));
     }
 
     public List<Move> moves() {
