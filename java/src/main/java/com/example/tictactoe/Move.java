@@ -30,4 +30,12 @@ public class Move {
             ", position=" + position +
             '}';
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
 }

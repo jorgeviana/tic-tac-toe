@@ -100,7 +100,17 @@ public class TicTacToeTest {
         assertEquals(GameState.X_WINS, game.state());
     }
 
-    // O_wins
+    @Test
+    void O_wins() {
+        game.play(X,UP_LEFT);
+        game.play(O,LEFT);
+        game.play(X,UP);
+        game.play(O,CENTER);
+        game.play(X,DOWN_RIGHT);
+        game.play(O, RIGHT);
+
+        assertEquals(GameState.O_WINS, game.state());
+    }
     // tie
 
     private void assertMovesExactly(Move... moves) {
