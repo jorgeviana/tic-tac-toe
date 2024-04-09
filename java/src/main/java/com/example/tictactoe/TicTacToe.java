@@ -35,6 +35,7 @@ public class TicTacToe {
     }
 
     public void play(Player player, Position position) {
+        if (isWinner(X) || isWinner(O)) return;
         if (currentPlayer == player) return;
         if (playedPositions.contains(position)) return;
 

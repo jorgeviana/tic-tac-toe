@@ -9,6 +9,8 @@ import static com.example.tictactoe.GameState.*;
 import static com.example.tictactoe.Player.*;
 import static com.example.tictactoe.Position.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TicTacToeTest {
 
@@ -111,7 +113,30 @@ public class TicTacToeTest {
 
         assertEquals(GameState.O_WINS, game.state());
     }
+
+    @Test
+    void cannot_play_after_winning() {
+        game.play(X,UP_LEFT);
+        game.play(O,LEFT);
+        game.play(X,UP);
+        game.play(O,CENTER);
+        game.play(X,UP_RIGHT);
+        assertEquals(GameState.X_WINS, game.state());
+
+        game.play(O, DOWN_LEFT);
+
+        assertEquals(GameState.X_WINS, game.state());
+        assertNotInMoves(new Move(O, DOWN_LEFT));
+    }
+
+
     // tie
+
+    private void assertNotInMoves(Move... moves) {
+        var expectedNotInMoves = List.of(moves);
+        var actualMoves = game.moves();
+        assertFalse(actualMoves.containsAll(expectedNotInMoves));
+    }
 
     private void assertMovesExactly(Move... moves) {
         var expectedMoves = List.of(
