@@ -19,20 +19,10 @@ public class TicTacToe {
     public GameState state() {
         if (isWinner(X)) return X_WINS;
         if (isWinner(O)) return O_WINS;
-        if (currentPlayer == null) return X_PLAYS;
-        if (currentPlayer == O) return X_PLAYS;
-        return GameState.O_PLAYS;
+        return nextPlayerState();
     }
 
-    private boolean isWinner(Player player) {
-        Set<Position> positions = moves.stream()
-            .filter(m -> m.getPlayer() == player)
-            .map(Move::getPosition)
-            .collect(Collectors.toSet());
 
-        return WINNING_COMBINATIONS.stream()
-            .anyMatch(wc -> positions.containsAll(wc));
-    }
 
     public void play(Player player, Position position) {
         if (isWinner(X) || isWinner(O)) return;
@@ -46,6 +36,22 @@ public class TicTacToe {
 
     public List<Move> moves() {
         return new ArrayList<>(moves);
+    }
+
+    private GameState nextPlayerState() {
+        if (currentPlayer == null) return X_PLAYS;
+        if (currentPlayer == O) return X_PLAYS;
+        return GameState.O_PLAYS;
+    }
+
+    private boolean isWinner(Player player) {
+        Set<Position> positions = moves.stream()
+            .filter(m -> m.getPlayer() == player)
+            .map(Move::getPosition)
+            .collect(Collectors.toSet());
+
+        return WINNING_COMBINATIONS.stream()
+            .anyMatch(wc -> positions.containsAll(wc));
     }
 
     private static final List<List<Position>> WINNING_COMBINATIONS = List.of(
