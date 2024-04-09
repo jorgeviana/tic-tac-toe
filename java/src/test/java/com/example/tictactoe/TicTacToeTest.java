@@ -78,6 +78,20 @@ public class TicTacToeTest {
         );
     }
 
+    @Test
+    void X_wins() {
+        game.play(X,UP_LEFT);
+        game.play(O,LEFT);
+        game.play(X,UP);
+        game.play(O,CENTER);
+        game.play(X,UP_RIGHT);
+
+        assertEquals(GameState.X_WINS, game.state());
+    }
+
+    // O_wins
+    // tie
+
     private void assertMovesExactly(Move... moves) {
         var expectedMoves = List.of(
             moves
@@ -85,7 +99,4 @@ public class TicTacToeTest {
         var actualMoves = game.moves();
         assertEquals(expectedMoves, actualMoves);
     }
-    // X_wins
-    // O_wins
-    // tie
 }
