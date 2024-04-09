@@ -1,10 +1,13 @@
 package com.example.tictactoe;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static com.example.tictactoe.Player.*;
 
 public class TicTacToe {
     private Player currentPlayer;
-    private Position playedPosition;
+    private Set<Position> playedPositions = new HashSet<>();
 
     public GameState state() {
         if (currentPlayer == null) return GameState.X_PLAYS;
@@ -13,8 +16,8 @@ public class TicTacToe {
     }
 
     public void play(Player player, Position position) {
-        if (playedPosition == position) return;
+        if (playedPositions.contains(position)) return;
         currentPlayer = player;
-        playedPosition = position;
+        playedPositions.add(position);
     }
 }
