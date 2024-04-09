@@ -1,8 +1,17 @@
 package com.example.tictactoe;
 
-public class TicTacToeTest {
+import org.junit.jupiter.api.Test;
 
-    // X_plays_first
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TicTacToeTest {
+    @Test
+    void X_plays_first() {
+        var game = new TicTacToe();
+
+        assertEquals(GameState.X_PLAYS, game.state());
+    }
+
     // O_plays_after_X
     // players_alternate
     // cannot_play_occupied_position
