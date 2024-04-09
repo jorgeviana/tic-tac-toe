@@ -16,6 +16,7 @@ public class TicTacToe {
     private Set<Move> moves = new LinkedHashSet<>();
 
     public GameState state() {
+        if (isTie()) return TIE;
         if (isWinner(X)) return X_WINS;
         if (isWinner(O)) return O_WINS;
         return nextPlayerState();
@@ -37,6 +38,10 @@ public class TicTacToe {
         if (currentPlayer == player) return true;
         if (isOccupiedPosition(position)) return true;
         return false;
+    }
+
+    private boolean isTie() {
+        return moves.size() == 9;
     }
 
     private boolean isOccupiedPosition(Position position) {

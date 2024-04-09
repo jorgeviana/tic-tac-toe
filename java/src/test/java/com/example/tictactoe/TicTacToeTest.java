@@ -129,8 +129,29 @@ public class TicTacToeTest {
         assertNotInMoves(new Move(O, DOWN_LEFT));
     }
 
+    //  X | O | X
+    // -----------
+    //  O | O | X
+    // -----------
+    //  X | X | O
+    @Test
+    void tie() {
+        game.play(X, UP_LEFT);
+        game.play(O, CENTER);
 
-    // tie
+        game.play(X, UP_RIGHT);
+        game.play(O, UP);
+
+        game.play(X, DOWN);
+        game.play(O, LEFT);
+
+        game.play(X, RIGHT);
+        game.play(O, DOWN_RIGHT);
+
+        game.play(X, DOWN_LEFT);
+
+        assertEquals(GameState.TIE, game.state());
+    }
 
     private void assertNotInMoves(Move... moves) {
         var expectedNotInMoves = List.of(moves);
