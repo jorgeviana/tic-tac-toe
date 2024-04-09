@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -60,12 +61,26 @@ public class TicTacToeTest {
         game.play(X, UP);
 
         assertEquals(O_PLAYS, game.state());
-        assertMovesExactly(X, UP_LEFT);
+        assertMovesExactly(new Move(X, UP_LEFT));
     }
 
-    private void assertMovesExactly(Player player, Position position) {
+    @Test
+    void O_cannot_play_twice() {
+        game.play(X, UP_LEFT);
+        game.play(O, UP);
+
+        game.play(O, UP_RIGHT);
+
+        assertEquals(X_PLAYS, game.state());
+        assertMovesExactly(
+            new Move(X, UP_LEFT),
+            new Move(O, UP)
+        );
+    }
+
+    private void assertMovesExactly(Move... moves) {
         var expectedMoves = List.of(
-            new Move(player, position)
+            moves
         );
         var actualMoves = game.moves();
         assertEquals(expectedMoves, actualMoves);
