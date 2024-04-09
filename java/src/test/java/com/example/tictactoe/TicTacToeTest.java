@@ -22,7 +22,15 @@ public class TicTacToeTest {
 
         assertEquals(O_PLAYS, game.state());
     }
-    // players_alternate
+
+    @Test
+    void players_alternate() {
+        game.play(X, UP_LEFT);
+
+        game.play(O, UP);
+
+        assertEquals(X_PLAYS, game.state());
+    }
     // cannot_play_occupied_position
     // cannot_play_twice
     // X_wins
