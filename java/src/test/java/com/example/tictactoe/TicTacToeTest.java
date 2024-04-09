@@ -89,6 +89,17 @@ public class TicTacToeTest {
         assertEquals(GameState.X_WINS, game.state());
     }
 
+    @Test
+    void X_wins_other_combination() {
+        game.play(X,DOWN_LEFT);
+        game.play(O,LEFT);
+        game.play(X,DOWN);
+        game.play(O,CENTER);
+        game.play(X,DOWN_RIGHT);
+
+        assertEquals(GameState.X_WINS, game.state());
+    }
+
     // O_wins
     // tie
 

@@ -23,7 +23,8 @@ public class TicTacToe {
     }
 
     private boolean isWinner() {
-        return playedPositions.containsAll(List.of(UP_LEFT, UP, UP_RIGHT));
+        return WINNING_COMBINATIONS.stream()
+            .anyMatch(wc -> playedPositions.containsAll(wc));
     }
 
     public void play(Player player, Position position) {
@@ -38,4 +39,9 @@ public class TicTacToe {
     public List<Move> moves() {
         return new ArrayList<>(moves);
     }
+
+    private static final List<List<Position>> WINNING_COMBINATIONS = List.of(
+        List.of(UP_LEFT, UP, UP_RIGHT),
+        List.of(DOWN_LEFT, DOWN, DOWN_RIGHT)
+    );
 }
